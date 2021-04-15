@@ -2,22 +2,23 @@ var express = require('express');
 var router = express.Router();
 const ProductController = require('./../controllers/ProductController');
 
-// middleware that is specific to this router
+// Ce Middleware se déclenche à chaque fois que je vais sur une route en /products
 router.use(function timeLog (req, res, next) {
   console.log('Product route called at time: ', Date.now())
   next()
 })
 // define the home page route
 router.get('/', async function (req, res) {
+  // Récupération du prix en query param de l'URI http://localhost:1234/products?price=10
   let price = req.query.price;
   if(price){
-    console.log(price);
+    console.log(`Query param of price is : ${price}`);
     res.send(`Query param of price is : ${price}`);
     return;
   }
   try {
-      const essai = await ProductController.test();
-      res.send('Products home page')
+      const essai = await ProductController.findByPrice(11);
+      res.send(essai);
   } catch (error) {
       console.log(error);
   }
@@ -25,10 +26,14 @@ router.get('/', async function (req, res) {
 })
 // define the about route
 router.get('/all', async function (req, res) {
-  const allProducts = await ProductController.test2();
+  const allProducts = await ProductController.getAllProducts();
   res.json(allProducts);
 })
-// Function to get Products by specific price
-router.get('/')
+// Populate DB with 3 fake products
+router.get('/populate', async function (req, res) {
+  const createdProducts = await ProductController.create3FakeProducts();
+  console.log(createdProducts);
+  res.json(createdProducts);
+})
 
 module.exports = router

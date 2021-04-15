@@ -1,26 +1,35 @@
+// Import du ou des Models à utiliser pour l'api Products
 const { Products } = require("./../models/ProductModel");
 
-const test = async() => {
-    const data = {
-        name: 'john',
-        description: 'ma description',
-        price : 10
-    }
-    const toSave = new Products(data)
-    try {
-        let req = await toSave.save();
-        console.log('Produit sauvé : ', req);
-    } catch (e) {
-        console.log(e);
-    }
+// Function to populate DB
+const create3FakeProducts = async() => {
+    // Fake products data
+    const products = [
+        { name: 'Table basse', description: 'Super table basse', price : 50 },
+        { name: 'Tabouret', description: 'Tabouret en cuire', price : 50 },
+        { name: 'Canapé d\'angle', description: 'Canépé confortable', price : 200 },
+    ]
+    // Using insertMany method of Mongoose
+    const createdProducts = await Products.insertMany(products, {ordered: false});
+    return createdProducts;
 }
-const test2 = async() => {
+
+// Get all the products
+const getAllProducts = async() => {
     let getAll = await Products.find()
     console.log('all products', getAll);
     return getAll;
 }
 
+// Find the products matching the price
+const findByPrice = async (price) => {
+    let products = await Products.findByPrice(Number(price));
+    return products ? products : [];
+}
+
+// Export all the functions
 module.exports = {
-    test,
-    test2
+    create3FakeProducts,
+    getAllProducts,
+    findByPrice
 }
