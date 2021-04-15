@@ -5,7 +5,8 @@ const productSchema = mongoose.Schema({
     name:  String, // String is shorthand for {type: String}
     description: String,
     price:   Number,
-    categories: [{}]
+    categories: [{}],
+    modules: {}
 }, {timestamps: true});
 
 productSchema.statics.findByPrice = async function(price) {
