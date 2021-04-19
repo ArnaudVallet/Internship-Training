@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+//import 'antd/dist/antd.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -8,10 +9,15 @@ import reportWebVitals from './reportWebVitals';
 import store from './redux/store';
 import { Provider } from 'react-redux';
 
+// Components
+import Navbar from './components/navbar/navbar';
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+      <Navbar>
       <App />
+      </Navbar>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
