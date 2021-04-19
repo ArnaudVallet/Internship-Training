@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 const cors = require('cors')
-const config = require("./config/key");
 
 // Récupération des variables d'environnement 
 const { APP_PORT, DB_URI } = process.env
