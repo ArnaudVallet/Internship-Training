@@ -14,6 +14,12 @@
     padding: 10px 10px;
     border-bottom: none;
 }
+.left-menu.wide-screen{
+    display: inline-block;
+}
+.right-menu.wide-screen{
+    float: right;
+}
 .menu-log{
     float: right;
     font-size: 16px;
@@ -24,4 +30,60 @@ nav.menu{
     border-bottom: solid 1px #e8e8e8;
     overflow: auto;
     box-shadow: 0 0 30px #f3f1f1;
+    padding: 0px 5%;
+    width: 100%;
+    z-index: 5;
+}
+.profile-dropdown-item{
+    text-align: center;
+}
+.user-menu.small-screen{
+    display: none;
+}
+.resp-menu-toggler {
+    float: right;
+    height: 32px;
+    padding: 6px;
+    margin-top: 8px;
+    display: none !important; /* use of important to overwrite ant-btn */
+    background: #3e91f7;
+}
+.resp-menu-drawer .ant-drawer-body{
+    padding: 0 !important;
+}
+.resp-menu-drawer .ant-drawer-header {
+    padding: 14px 24px !important;
+  }
+
+@media (max-width: 767px) {
+    .resp-menu-toggler {
+      display: inline-block !important;
+    }
+  
+    .left-menu.wide-screen,
+    .right-menu.wide-screen,
+    .profile-toggler {
+      display: none;
+    }
+
+    .user-menu.small-screen{
+        display: unset
+    }
+  
+    .menu__logo a {
+      margin-left: -20px;
+    }
+  
+    .menu__container .ant-menu-item,
+    .menu__container .ant-menu-submenu-title {
+      padding: 1px 20px;
+    }
+  
+    .menu__logo a {
+      padding: 10px 20px;
+    }
+
+    .profile-toggler{
+        display: none;
+    }
 }
