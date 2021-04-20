@@ -1,0 +1,27 @@
+.menu-logo{
+    width: 150px;
+    float: left;
+}
+
+.logo-link{
+    display: inline-block;
+    font-size: 20px;
+    padding: 19px 20px;
+}
+.menu-main{
+    display: inline-block;
+    font-size: 16px;
+    padding: 10px 10px;
+    border-bottom: none;
+}
+.menu-log{
+    float: right;
+    font-size: 16px;
+    padding: 10px;
+    border-bottom: none;
+}
+nav.menu{
+    border-bottom: solid 1px #e8e8e8;
+    overflow: auto;
+    box-shadow: 0 0 30px #f3f1f1;
+}
