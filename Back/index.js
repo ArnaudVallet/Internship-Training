@@ -1,34 +1,52 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
-require('dotenv').config();
-const cors = require('cors')
+const connectDB = require('./config/DB');
+const errorHandler = require('./middlewares/error');
 
-// Récupération des variables d'environnement 
-const { APP_PORT, DB_URI } = process.env
+// Parse the incoming requests with JSON payloads (based on body-parser)
+app.use(express.json());
 
-var corsOptions = {
-  origin: 'http://localhost:3000',
-  optionsSuccessStatus: 200
-}
-app.use(cors());
+// CORS 
+// const cors = require('cors');
+// var corsOptions = {
+//   origin: 'http://localhost:3000',
+//   optionsSuccessStatus: 200
+// }
+// app.use(cors());
 
-const mongoose = require("mongoose");
-mongoose.connect(DB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false })
-  .then(() => console.log('MongoDB Connected...'))
-  .catch(err => console.log(err));
+// DB connexion
+connectDB();
 
 // Basic Home route '/' returning Hello
 app.get('/', (req, res) =>{
     res.send('Hello from back api !');
 });
 
+// .all works also for app to specify such middleware even if middleware coule be passed in app.use('<my-route>', 'here', '<my-router>')
+  // app.all('/products/*', (req, res, next) => {
+  //   console.log('I am applied as expected')
+  //   next()
+  // })
+
 // Import api routers
 var products = require('./routes/ProductsRouter')
 
 // Use api routers
-app.use('/products', products)
+app.use('/api/products', products);
+app.use('/api/auth', require('./routes/AuthRouter')); // Shortcut
+app.use('/api/private', require('./routes/PrivateRouterExample')); // Basics of private
+
+// Error Handler --> Must be the last middleware called
+app.use(errorHandler);
 
 // Application running and listening
-app.listen(APP_PORT, () =>{
-    console.log(`Training app listening at http://localhost:${APP_PORT}`);
+const PORT = process.env.PORT || 5000;
+const server = app.listen(PORT, () =>{
+    console.log(`Training app listening at http://localhost:${PORT}`);
 });
+
+// process.on('unhandledRejection', (err, promise) => {
+//   console.log(`Logged Error: ${err}`);
+//   server.close(()=> process.exit(1));
+// })

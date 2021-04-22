@@ -2,12 +2,24 @@ var express = require('express');
 var router = express.Router();
 const ProductController = require('./../controllers/ProductController');
 
+// function test(req, res, next){
+//   console.log('La fonction test est appelée');
+//   next()
+// }
+
 // Ce Middleware se déclenche à chaque fois que je vais sur une route en /products
 router.use(function timeLog (req, res, next) {
   console.log('Product route called at time: ', Date.now())
   next()
 })
-// define the home page route
+
+// Test de .all applied to router
+  // Apply to all routes from this router
+    // router.all('*', test)
+  // Apply to all starting by '/api'
+    // router.all('/api/*')
+
+// Define the home page route
 router.get('/', async function (req, res) {
   // Récupération du prix en query param de l'URI http://localhost:1234/products?price=10
   let price = req.query.price;
@@ -35,5 +47,6 @@ router.get('/populate', async function (req, res) {
   console.log(createdProducts);
   res.json(createdProducts);
 })
+
 
 module.exports = router
