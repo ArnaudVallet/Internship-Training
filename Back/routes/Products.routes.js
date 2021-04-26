@@ -1,3 +1,4 @@
+const { Router } = require('express');
 var express = require('express');
 var router = express.Router();
 const ProductController = require('./../controllers/ProductController');
@@ -47,6 +48,9 @@ router.get('/populate', async function (req, res) {
   console.log(createdProducts);
   res.json(createdProducts);
 })
+
+// Testing aggregation
+router.route('/aggregation').get(ProductController.myAggregation);
 
 
 module.exports = router

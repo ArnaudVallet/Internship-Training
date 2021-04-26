@@ -5,7 +5,7 @@ const { Products } = require("./../models/ProductModel");
 const create3FakeProducts = async() => {
     // Fake products data
     const products = [
-        { name: 'Table basse', description: 'Super table basse', price : 50 },
+        { name: 'Table basse', description: 'Super table basse', price : 50, categories: [{name: 'salon'}] },
         { name: 'Tabouret', description: 'Tabouret en cuire', price : 50 },
         { name: 'Canapé d\'angle', description: 'Canépé confortable', price : 200 },
     ]
@@ -27,9 +27,17 @@ const findByPrice = async (price) => {
     return products ? products : [];
 }
 
+const myAggregation = async(req, res, next) => {
+    const myResult = Products.aggregate([
+        { $count: "name" }
+    ])
+    res.send(myResult);
+}
+
 // Export all the functions
 module.exports = {
     create3FakeProducts,
     getAllProducts,
-    findByPrice
+    findByPrice,
+    myAggregation
 }
