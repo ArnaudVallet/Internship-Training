@@ -21,6 +21,9 @@ exports.protect = async(req, res, next) =>{
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         // Try to fetch the user in the DB with his ID we get in the decoded JWT object
+
+        // CHECK CACHE ICI !!!
+
         const user = await User.findById(decoded.id);
         // No user ? Throw custom ErrorResponse
         if(!user){

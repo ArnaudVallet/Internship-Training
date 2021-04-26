@@ -4,6 +4,10 @@ const crypto = require('crypto');
 // Custom Error class wich takes (message, statusCode) as parameters.
 const ErrorResponse = require('../utils/errorResponse');
 
+// DANS LOGIN ET REGISTER METTRE TOKEN DANS LE CACHE
+// CHERCHER SI UTILISATEUR A PLUS DE 3 TOKENS
+// 
+
 exports.register = async(req, res, next) => {
     // Get username, email and password from the body
     const { username, email, password } = req.body;
