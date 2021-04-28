@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-const {  } = require('../controllers/CategoryController');
+const { createPeopleDoc, getWithMixedTypeMessage } = require('../controllers/PeopleController');
 
-// router.route("/register").post(register);
+router.route("/create").get(createPeopleDoc);
 
-// router.route("/login").post(login);
+router.route("/getwithmixedtypemessage").get(getWithMixedTypeMessage);
 
 // router.route("/forgotpassword").post(forgotpassword);
 
