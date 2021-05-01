@@ -11,10 +11,10 @@ const FormationSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Module'
     }],
-    published: {
-        type: Boolean,
-        default: false
-    }
+    // published: {
+    //     type: Boolean,
+    //     default: false
+    // }
 })
 
 //FormationSchema.pre('find', Populate('modules'));
@@ -34,6 +34,6 @@ const FormationSchema = new mongoose.Schema({
     //     return time;
     // });
 
-const Formations = mongoose.model('Formation', FormationSchema);
+const Formation = mongoose.model('Formation', FormationSchema);
 
-module.exports = Formations;
+module.exports = Formation;
