@@ -18,36 +18,38 @@ exports.createWithBigObject = async(req, res, next) => {
   // Get the body
   const data = req.body;
 
-  for(mod of data.modules){
-    
-  }
-
   const modules = []
 
-  // Cette méthode ne push pas dans modules à cause du async await...
-  data.modules.forEach( async mod => {
+  for(mod of data.modules){
     let creation = { titre: mod.titre };
     const insertComp = await Composant.insertMany(mod.composants);
     let composantsIds = insertComp.map( comp => comp._id);
     creation.composants = composantsIds;
     modules.push(creation);
-  });
+  }
 
-  console.log(modules);
-
-  // let pipi = [];
-  
-  // allComposants.forEach( async comp => {
-  //   const popo = await Composant.insertMany(comp);
-  //   console.log(popo);
-  //   pipi.push
+  // Cette méthode ne push pas dans modules à cause du async await...
+  // data.modules.forEach( async mod => {
+  //   let creation = { titre: mod.titre };
+  //   const insertComp = await Composant.insertMany(mod.composants);
+  //   let composantsIds = insertComp.map( comp => comp._id);
+  //   creation.composants = composantsIds;
+  //   modules.push(creation);
   // });
-  
-  // const test = await allComposants.map( async comp => await Composant.insertMany(comp))
-  // console.log(test);
-}
 
-// const myCallback = async (item) => {
-//   const blabla = await Composant.insertMany(item.composants);
-//   return blabla
-// }
+  const insertModules = await Module.insertMany(modules);
+  let modulesIds = insertModules.map( mod => mod._id);
+  // console.log(modulesIds);
+
+  data.modules = modulesIds;
+
+  const newFormation = new Formation(data);
+  const insertFormation = newFormation.save();
+
+  //console.log(modules);
+  //data.modules = modules;
+  res.send(insertFormation);
+  //console.log(data.modules);
+
+  
+}

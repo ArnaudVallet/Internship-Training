@@ -4,7 +4,6 @@ const ModuleSchema = new mongoose.Schema({
   titre: {
       type: String,
       required: [true, "Veuillez saisir un titre au module."],
-      unique: true
   },
   composants: [{
     type: mongoose.Schema.Types.Mixed,
