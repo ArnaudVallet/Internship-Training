@@ -1,55 +1,106 @@
 const Formation = require('../models/FormationModel');
 const Module = require('../models/ModuleModel');
 const Composant = require('../models/ComposantModel');
+// Custom Error class wich takes (message, statusCode) as parameters.
+const ErrorResponse = require('../utils/errorResponse');
 
-exports.getAllFormations = async(req, res, next) => {
-  const fetch = await Formation.find().populate('modules').exec();
-  res.json(fetch);
-}
+exports.getAllFormationsWithPopulate = async(req, res, next) => {
+  await Formation.find()
+    .populate({path: 'modules', model: Module, populate: {path: 'composants', model: Composant}})
+  .exec( (err, docs) => {
+    err ? next(err) : res.status(200).json({
+      success: true,
+      formations: docs
+    });
+  });
+};
+
+exports.getAllFormationsWithAggregate = async(req, res, next) => {
+  await Formation.aggregate([
+    { $lookup: {
+        from: 'modules',
+        localField: 'modules',
+        foreignField: '_id',
+        as: 'modules'
+      }
+    }, {
+      $lookup: {
+        from: 'composants',
+        localField: 'modules.composants',
+        foreignField: '_id',
+        as: 'modules.composants'
+      }
+    }, {
+      $unwind: {
+        path: '$modules.composants'
+      }
+    }
+  ]).exec( (err, docs) => {
+    err ? next(err) : res.status(200).json({
+      success: true,
+      formations: docs
+    })
+  });
+};
 
 exports.create = async(req, res, next) => {
-  const data = await req.body;
-  const insert = await new Formation(data);
+  const formation = await req.body;
+  const insert = new Formation(formation);
   const result = await insert.save();
   res.json(result);
 }
 
 exports.createWithBigObject = async(req, res, next) => {
   // Get the body
-  const data = req.body;
-
+  const formation = req.body;
+  // Define modules[] where we'll store each modules with modules.composants[...ids]
   const modules = []
-
-  for(mod of data.modules){
+  // Loop modules, save their composants[] and map the result to get an composants = [...ids]
+  for(mod of formation.modules){
     let creation = { titre: mod.titre };
     const insertComp = await Composant.insertMany(mod.composants);
     let composantsIds = insertComp.map( comp => comp._id);
     creation.composants = composantsIds;
     modules.push(creation);
   }
+  // Insert the modules updated with modules.composants[...ids]
+  const insertModules = await Module.insertMany(modules);
+  // Map the result to only get an modules = [...ids]
+  let modulesIds = insertModules.map( mod => mod._id);
+  // Change formation.modules to our modules[...ids]
+  formation.modules = modulesIds;
+  // Create the formation object and save it
+  const newFormation = await new Formation(formation).save();
+
+  res.send(newFormation);
+
+  // res.status(201).json({
+  //   success: true,
+  //   data: 'Mot de passe réinitialisé'
+  // })
 
   // Cette méthode ne push pas dans modules à cause du async await...
-  // data.modules.forEach( async mod => {
-  //   let creation = { titre: mod.titre };
-  //   const insertComp = await Composant.insertMany(mod.composants);
-  //   let composantsIds = insertComp.map( comp => comp._id);
-  //   creation.composants = composantsIds;
-  //   modules.push(creation);
+    // formation.modules.forEach( async mod => {
+    //   let creation = { titre: mod.titre };
+    //   const insertComp = await Composant.insertMany(mod.composants);
+    //   let composantsIds = insertComp.map( comp => comp._id);
+    //   creation.composants = composantsIds;
+    //   modules.push(creation);
   // });
-
-  const insertModules = await Module.insertMany(modules);
-  let modulesIds = insertModules.map( mod => mod._id);
-  // console.log(modulesIds);
-
-  data.modules = modulesIds;
-
-  const newFormation = new Formation(data);
-  const insertFormation = newFormation.save();
-
-  //console.log(modules);
-  //data.modules = modules;
-  res.send(insertFormation);
-  //console.log(data.modules);
-
   
+}
+
+exports.deleteFormation = async(req, res, next) => {
+  const _id = req.params.id;
+
+  try {
+    const myDelete = await Formation.findOneAndDelete({_id});
+    console.log(myDelete);
+    myDelete ? res.status(200).json({
+      success: true,
+      deleted: myDelete.titre
+    }) : next(new ErrorResponse('Problème survenu lors de la requête', 500));
+  } catch (error) {
+    next(error);
+  }
 }

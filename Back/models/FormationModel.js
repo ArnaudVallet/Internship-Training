@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Populate = require("../utils/autopopulate");
 
 const FormationSchema = new mongoose.Schema({
-    title: {
+    titre: {
         type: String,
         required: [true, "Veuillez saisir un titre à la formation."],
         unique: true

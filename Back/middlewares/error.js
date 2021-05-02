@@ -6,7 +6,7 @@ const errorHandler = (err, req, res, next) => {
     error.message = err.message
 
     // For insight purpose on what contains the err thrown
-    //console.log('\x1b[36m%s\x1b[0m' ,'My insight : ', err); // You can then build your own if() handlers below
+    // console.log('\x1b[36m%s\x1b[0m' ,'My insight : ', Object.getOwnPropertyNames(err)); // You can then build your own if() handlers below
 
     // 11 000 means 'duplicate error key' in Mongoose
     if(err.code === 11000){
@@ -30,6 +30,13 @@ const errorHandler = (err, req, res, next) => {
         error = new ErrorResponse(message, 401);
     }
 
+    // Handling Mongoose bad requests
+    if(err.kind === 'ObjectId'){
+      const message = 'Aucune formation n\'a pu être supprimée.';
+      error = new ErrorResponse(message, 400);
+    }
+
+    // Sending the resulting handled error
     res.status(error.statusCode || 500).json({
         success: false,
         error: error.message || "Server Error"

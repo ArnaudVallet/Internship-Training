@@ -1,10 +1,29 @@
 const express = require('express');
 const router = express.Router();
+const { protect } = require('../middlewares/authMiddleware');
 
-const { create, getAllFormations, createWithBigObject } = require('../controllers/FormationController');
+const { 
+  create,
+  createWithBigObject,
+  getAllFormationsWithPopulate,
+  getAllFormationsWithAggregate,
+  deleteFormation
+} = require('../controllers/FormationController');
 
-router.route('/').get(getAllFormations);
-router.route("/create").post(create);
+// If we want a general middleware
+// router.use( <MIDDLEWARE> )
+
+// CREATE
+router.route('/create').post(create);
 router.route('/createwithbigobject').post(createWithBigObject);
+
+// READ
+router.route('/withpopulate').get(getAllFormationsWithPopulate);
+router.route('/withaggregate').get(getAllFormationsWithAggregate);
+
+// UPDATE
+
+// DELETE
+router.route('/delete/:id').delete(deleteFormation)
 
 module.exports = router;
