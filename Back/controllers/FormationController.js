@@ -48,47 +48,36 @@ exports.create = async(req, res, next) => {
   const insert = new Formation(formation);
   const result = await insert.save();
   res.json(result);
-}
+};
 
 exports.createWithBigObject = async(req, res, next) => {
-  // Get the body
-  const formation = req.body;
-  // Define modules[] where we'll store each modules with modules.composants[...ids]
-  const modules = []
-  // Loop modules, save their composants[] and map the result to get an composants = [...ids]
-  for(mod of formation.modules){
-    let creation = { titre: mod.titre };
-    const insertComp = await Composant.insertMany(mod.composants);
-    let composantsIds = insertComp.map( comp => comp._id);
-    creation.composants = composantsIds;
-    modules.push(creation);
-  }
-  // Insert the modules updated with modules.composants[...ids]
-  const insertModules = await Module.insertMany(modules);
-  // Map the result to only get an modules = [...ids]
-  let modulesIds = insertModules.map( mod => mod._id);
-  // Change formation.modules to our modules[...ids]
-  formation.modules = modulesIds;
-  // Create the formation object and save it
-  const newFormation = await new Formation(formation).save();
-
-  res.send(newFormation);
-
-  // res.status(201).json({
-  //   success: true,
-  //   data: 'Mot de passe réinitialisé'
-  // })
-
-  // Cette méthode ne push pas dans modules à cause du async await...
-    // formation.modules.forEach( async mod => {
-    //   let creation = { titre: mod.titre };
-    //   const insertComp = await Composant.insertMany(mod.composants);
-    //   let composantsIds = insertComp.map( comp => comp._id);
-    //   creation.composants = composantsIds;
-    //   modules.push(creation);
-  // });
   
-}
+  try {
+    // Get the body
+    const formation = req.body;
+    // Define modules[] where we'll store each modules with modules.composants[...ids]
+    const modules = []
+    // Loop modules, save their composants[] and map the result to get an composants = [...ids]
+    for(mod of formation.modules){
+      let creation = { titre: mod.titre };
+      const insertComp = await Composant.insertMany(mod.composants);
+      let composantsIds = insertComp.map( comp => comp._id);
+      creation.composants = composantsIds;
+      modules.push(creation);
+    }
+    // Insert the modules updated with modules.composants[...ids]
+    const insertModules = await Module.insertMany(modules);
+    // Map the result to only get an modules = [...ids]
+    let modulesIds = insertModules.map( mod => mod._id);
+    // Change formation.modules to our modules[...ids]
+    formation.modules = modulesIds;
+    // Create the formation object and save it
+    const newFormation = await new Formation(formation).save();
+    res.send(newFormation);
+  } catch (error) {
+    next(error);
+  }
+};
 
 exports.deleteFormation = async(req, res, next) => {
   const _id = req.params.id;
@@ -102,5 +91,15 @@ exports.deleteFormation = async(req, res, next) => {
     }) : next(new ErrorResponse('Problème survenu lors de la requête', 500));
   } catch (error) {
     next(error);
+  }
+};
+
+exports.setPublished = async(req, res, next) => {
+  const _id = req.params.id;
+
+  try {
+    const myUpdate = await Formation.findOneAndUpdate({_id}, {published: !this.published});
+  } catch (error) {
+    next(error)
   }
 }

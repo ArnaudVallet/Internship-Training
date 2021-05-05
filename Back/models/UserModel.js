@@ -27,6 +27,10 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    formations: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Formation'
+    }],
     resetPasswordToken: {
         type: String
     },
