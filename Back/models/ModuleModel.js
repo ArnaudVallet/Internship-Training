@@ -8,7 +8,7 @@ const ModuleSchema = new mongoose.Schema({
   composants: [{
     type: mongoose.Schema.Types.Mixed,
     ref: 'Composant'
-  }]
+  }],
 })
 
 const Module = mongoose.model('Module', ModuleSchema);

@@ -17,8 +17,9 @@ const FormationSchema = new mongoose.Schema({
     },
     niveau: {
       type: String,
+      lowercase: true,
       enum: {
-        values:  ['Débutant', 'Intermédiaire', 'Confirmé'],
+        values:  ['débutant', 'intermédiaire', 'confirmé'],
         message: 'Le niveau {VALUE} n\'est pas supporté'
       } 
     },
@@ -26,10 +27,10 @@ const FormationSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Module'
     }],
-    // published: {
-    //     type: Boolean,
-    //     default: false
-    // }
+    published: {
+      type: Boolean,
+      default: false
+    }
 })
 
 //FormationSchema.pre('find', Populate('modules'));

@@ -15,6 +15,18 @@ exports.getAllFormationsWithPopulate = async(req, res, next) => {
   });
 };
 
+exports.getPublishedFormations = async(req, res, next) => {
+  await Formation.find( { published: true } )
+    .populate({path: 'modules', model: Module, populate: {path: 'composants', model: Composant}})
+  .exec( (err, docs) => {
+    err ? next(err) : res.status(200).json({
+      success: true,
+      formations: docs
+    });
+  });
+};
+
+// Pas ouf...
 exports.getAllFormationsWithAggregate = async(req, res, next) => {
   await Formation.aggregate([
     { $lookup: {
@@ -28,11 +40,7 @@ exports.getAllFormationsWithAggregate = async(req, res, next) => {
         from: 'composants',
         localField: 'modules.composants',
         foreignField: '_id',
-        as: 'modules.composants'
-      }
-    }, {
-      $unwind: {
-        path: '$modules.composants'
+        as: 'composants'
       }
     }
   ]).exec( (err, docs) => {
@@ -95,10 +103,18 @@ exports.deleteFormation = async(req, res, next) => {
 };
 
 exports.setPublished = async(req, res, next) => {
-  const _id = req.params.id;
-
+  const _id = await req.body._id;
   try {
-    const myUpdate = await Formation.findOneAndUpdate({_id}, {published: !this.published});
+    //const myUpdate = await Formation.findOneAndUpdate({_id}, {published: !this.published});
+    const form = await Formation.findOne({ _id });
+    await form.updateOne({published: !form.published}, {new: true});
+    // As updateOne does not return the updated document...
+    form.published = !form.published; // ... this is for response visibility
+    res.status(200).json({
+      success: true,
+      message: 'Formation correctement mise à jour.',
+      form
+    });
   } catch (error) {
     next(error)
   }
