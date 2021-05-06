@@ -52,10 +52,9 @@ exports.getAllFormationsWithAggregate = async(req, res, next) => {
 };
 
 exports.create = async(req, res, next) => {
-  const formation = await req.body;
-  const insert = new Formation(formation);
-  const result = await insert.save();
-  res.json(result);
+  const { image, body: { name } } = req;
+  console.log(req.image);
+  res.send(image)
 };
 
 exports.createWithBigObject = async(req, res, next) => {

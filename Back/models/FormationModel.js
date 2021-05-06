@@ -23,6 +23,10 @@ const FormationSchema = new mongoose.Schema({
         message: 'Le niveau {VALUE} n\'est pas supporté'
       } 
     },
+    image: {
+      type: String,
+      
+    },
     modules: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Module'

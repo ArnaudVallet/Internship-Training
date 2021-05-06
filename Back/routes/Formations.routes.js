@@ -4,6 +4,7 @@ const router = express.Router();
 // Middlewares
 const { protect } = require('../middlewares/authMiddleware');
 const { adminCheck } = require('../middlewares/adminMiddleware');
+const { FormationImageUpload } = require('./../middlewares/multer');
 
 // Controller Functions
 const { 
@@ -20,7 +21,7 @@ const {
 // router.use( <MIDDLEWARE> )
 
 // CREATE
-router.route('/create').post(create);
+router.route('/create').post(FormationImageUpload.single('image'), create);
 router.route('/createwithbigobject').post(createWithBigObject);
 
 // READ
