@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const errorHandler = require('./middlewares/error');
+const path = require('path');
+global.appRoot = path.resolve(__dirname);
 
 // Parse the incoming requests with JSON payloads (based on body-parser)
 app.use(express.json());
