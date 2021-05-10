@@ -7,7 +7,7 @@
 ## Auth API
 | Route                                   | HTTP Verb | Description                       | Exemples |
 | :-------------------------------------- | :-------: | :-------------------------------- | :---: |
-| `/api/courses/sampleCourses`            |   `GET`   | Show random Courses               | [Voir]
+| `/api/courses/sampleCourses`            |   `GET`   | Show random Courses               | [Voir](#)
 | `/api/courses/getAllCourses`            |   `GET`   | Show all Courses                  |```javascript require 'redcarpet'markdown = Redcarpet.new("Hello World!")puts markdown.to_html``` |
 | `/api/courses/getTeacherCourses/:id`    |   `GET`   | Show all Teacher Courses          |
 | `/api/courses/getOneCourse/:id`         |   `GET`   | Show one Course                   |
@@ -35,4 +35,8 @@
 | `/profile-teacher/edit-course/:course_id` | Show Edit Course Form |
 
 
-
+```javascript
+require 'redcarpet'
+markdown = Redcarpet.new("Hello World!")
+puts markdown.to_html
+```
