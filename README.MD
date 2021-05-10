@@ -3,8 +3,8 @@ DOCUMENTATION
 - [SERVER](#server)
   - [Auth API](#auth-api)
   - [Formations API](#formations-api)
-    - [CREATE - formations](#create---formations)
-    - [READ - formations](#read---formations)
+      - [CREATE - formations](#create---formations)
+      - [READ - formations](#read---formations)
 - [CLIENT](#client)
 
 # SERVER
@@ -19,14 +19,14 @@ DOCUMENTATION
 
 ## Formations API
 
-### CREATE - formations
+#### CREATE - formations
 | Route                                 | HTTP Verb | Description                                                                                                                                         |        Exemples        |
 | :------------------------------------ | :-------: | :-------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------: |
 | `/api/formations/uploadimage`         |  `POST`   | Upload an image to the `/images/formation` folder                                                                                                   | [:mag:](./Back/routes) |
 | `/api/formations/create`              |  `POST`   | Enregistre l'image de la formation puis la crée sans [modules](#modules-api)                                                                        | [:mag:](./Back/routes) |
 | `/api/formations/createwithbigobject` |  `POST`   | Enregistre l'image de la formation puis la crée intégralement la formation en insérant ses [modules](#modules-api) et [composants](#composants-api) | [:mag:](./Back/routes) |
 
-###  READ - formations
+####  READ - formations
 | Route                                        | HTTP Verb | Description                                                                                                             |        Exemples        |
 | :------------------------------------------- | :-------: | :---------------------------------------------------------------------------------------------------------------------- | :--------------------: |
 | `/api/formations/`                           |   `GET`   | Récupère toutes les formations non populées                                                                             | [:mag:](./Back/routes) |
