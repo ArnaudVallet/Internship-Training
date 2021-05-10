@@ -34,6 +34,7 @@ DOCUMENTATION
 #### CREATE - formations
 | Route                                 | HTTP Verb | Description                                                                                                                                         |        Exemples        |
 | :------------------------------------ | :-------: | :-------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------: |
+| CREATE                                |
 | `/api/formations/uploadimage`         |  `POST`   | Upload une image dans le dossier `/images/formation`                                                                                                | [:mag:](./Back/routes) |
 | `/api/formations/create`              |  `POST`   | Enregistre l'image de la formation puis la crée sans [modules](#modules-api)                                                                        | [:mag:](./Back/routes) |
 | `/api/formations/createwithbigobject` |  `POST`   | Enregistre l'image de la formation puis la crée intégralement la formation en insérant ses [modules](#modules-api) et [composants](#composants-api) | [:mag:](./Back/routes) |
@@ -96,13 +97,13 @@ DOCUMENTATION
 | `/api/composants/` |   `GET`   | Récupère tous les composants | [:mag:](./Back/routes) |
 
 #### UPDATE - composants
-| Route                                                      | HTTP Verb | Description                                                                     |        Exemples        |
-| :--------------------------------------------------------- | :-------: | :------------------------------------------------------------------------------ | :--------------------: |
+| Route                   | HTTP Verb | Description             |        Exemples        |
+| :---------------------- | :-------: | :---------------------- | :--------------------: |
 | `pas encore implémenté` |  `PATCH`  | Met à jour un composant | [:mag:](./Back/routes) |
 
 #### DELETE - composants
-| Route                   | HTTP Verb | Description        |        Exemples        |
-| :---------------------- | :-------: | :----------------- | :--------------------: |
+| Route                   | HTTP Verb | Description           |        Exemples        |
+| :---------------------- | :-------: | :-------------------- | :--------------------: |
 | `pas encore implémenté` | `DELETE`  | Supprime un composant | [:mag:](./Back/routes) |
 
 
