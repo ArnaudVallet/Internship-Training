@@ -5,8 +5,12 @@ const Composant = require('../models/ComposantModel');
 const ErrorResponse = require('../utils/errorResponse');
 
 exports.getAllModules = async(req, res, next) => {
-  const fetch = await Module.find();
-  res.json(fetch);
+  try {
+    const fetch = await Module.find();
+    res.status(200).json(fetch);
+  } catch (error) {
+    next(error) 
+  }
 }
 
 exports.getOneById = async(req, res, next) => {
@@ -28,7 +32,7 @@ exports.createModule = async(req, res, next) => {
   const data = await req.body
   const newModule = await new Module(data);
   const result = await newModule.save();
-  res.json(result);
+  res.status(201).json(result);
 }
 
 exports.createFormationModule = async(req, res, next) => {
