@@ -1,5 +1,3 @@
-DOCUMENTATION
-
 - [SERVER API DOC](#server-api-doc)
   - [Auth API](#auth-api)
   - [Formations API](#formations-api)
