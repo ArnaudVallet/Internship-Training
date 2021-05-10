@@ -5,7 +5,7 @@
 ### `/api/auth/register`
 
 ```javascript
-req.body
-{ email, password, username }
+// req.body
+{ email: String, password: String, username: String }
 ```
 
