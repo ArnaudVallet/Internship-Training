@@ -5,6 +5,8 @@ DOCUMENTATION
   - [Formations API](#formations-api)
       - [CREATE - formations](#create---formations)
       - [READ - formations](#read---formations)
+      - [UPDATE - formations](#update---formations)
+      - [DELETE - formations](#delete---formations)
 - [CLIENT](#client)
 
 # SERVER
@@ -22,11 +24,11 @@ DOCUMENTATION
 #### CREATE - formations
 | Route                                 | HTTP Verb | Description                                                                                                                                         |        Exemples        |
 | :------------------------------------ | :-------: | :-------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------: |
-| `/api/formations/uploadimage`         |  `POST`   | Upload an image to the `/images/formation` folder                                                                                                   | [:mag:](./Back/routes) |
+| `/api/formations/uploadimage`         |  `POST`   | Upload une image dans le dossier `/images/formation`                                                                                                | [:mag:](./Back/routes) |
 | `/api/formations/create`              |  `POST`   | Enregistre l'image de la formation puis la crée sans [modules](#modules-api)                                                                        | [:mag:](./Back/routes) |
 | `/api/formations/createwithbigobject` |  `POST`   | Enregistre l'image de la formation puis la crée intégralement la formation en insérant ses [modules](#modules-api) et [composants](#composants-api) | [:mag:](./Back/routes) |
 
-####  READ - formations
+#### READ - formations
 | Route                                        | HTTP Verb | Description                                                                                                             |        Exemples        |
 | :------------------------------------------- | :-------: | :---------------------------------------------------------------------------------------------------------------------- | :--------------------: |
 | `/api/formations/`                           |   `GET`   | Récupère toutes les formations non populées                                                                             | [:mag:](./Back/routes) |
@@ -34,6 +36,20 @@ DOCUMENTATION
 | `/api/formations/getonebyid/:id`             |   `GET`   | Récupère une formation non populée par son `id`                                                                         | [:mag:](./Back/routes) |
 | `/api/formations/getonebyidwithpopulate/:id` |   `GET`   | Récupère une formation populée de ses [modules](#modules-api) et ses [composants](#composants-api) par son `id`         | [:mag:](./Back/routes) |
 | `/api/formations/publishedwithpopulate`      |   `GET`   | Récupère uniquement les formations publiées, populées de leurs [modules](#modules-api) et [composants](#composants-api) | [:mag:](./Back/routes) |
+
+#### UPDATE - formations
+| Route                                                   | HTTP Verb | Description                                                                   |        Exemples        |
+| :------------------------------------------------------ | :-------: | :---------------------------------------------------------------------------- | :--------------------: |
+| `/api/formations/:id/setpublished`                      |  `PATCH`  | Change le statut de publication d'une formation à son inverse                 | [:mag:](./Back/routes) |
+| `/api/formations/:formation_id/addonemodule/:module_id` |  `PATCH`  | Ajoute un [modules](#modules-api) à la formation dans son tableau de modules. | [:mag:](./Back/routes) |
+
+#### DELETE - formations
+| Route                        | HTTP Verb | Description            |        Exemples        |
+| :--------------------------- | :-------: | :--------------------- | :--------------------: |
+| `/api/formations/delete/:id` | `DELETE`  | Supprime une formation | [:mag:](./Back/routes) |
+
+
+
 
 # CLIENT
 
