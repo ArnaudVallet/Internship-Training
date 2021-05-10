@@ -39,7 +39,7 @@ router.route('/withaggregate').get(getAllFormationsWithAggregate);
 router.route('/publishedwithpopulate').get(getPublishedFormations);
 
 // UPDATE
-router.route('/setpublished/').patch(setPublished);
+router.route('/:id/setpublished/').patch(setPublished);
 router.route('/:formation_id/addonemodule/:module_id').patch(addOneModule);
 
 // DELETE
