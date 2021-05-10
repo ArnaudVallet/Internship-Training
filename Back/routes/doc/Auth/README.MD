@@ -3,5 +3,8 @@
     - [`/api/auth/register`](#apiauthregister)
 
 ### `/api/auth/register`
+req.body
+```javascript
+{ email, password, username }
+```
 
-> { email, password, username }
