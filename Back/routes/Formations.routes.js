@@ -10,6 +10,7 @@ const { FormationImageUpload } = require('./../middlewares/multer');
 const { 
   create,
   createWithBigObject,
+  getAllFormations,
   getAllFormationsWithPopulate,
   getAllFormationsWithAggregate,
   getPublishedFormations,
@@ -30,11 +31,12 @@ router.route('/create').post(FormationImageUpload.single('file'), create);
 router.route('/createwithbigobject').post(createWithBigObject);
 
 // READ
+router.route('/').get(getAllFormations);
 router.route('/getonebyid/:id').get(getOneById);
 router.route('/getonebyidwithpopulate/:id').get(getOneByIdWithPopulate);
 router.route('/withpopulate').get(getAllFormationsWithPopulate);
 router.route('/withaggregate').get(getAllFormationsWithAggregate);
-router.route('/published').get(getPublishedFormations);
+router.route('/publishedwithpopulate').get(getPublishedFormations);
 
 // UPDATE
 router.route('/setpublished/').patch(setPublished);

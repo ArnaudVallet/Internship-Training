@@ -4,6 +4,18 @@ const Composant = require('../models/ComposantModel');
 // Custom Error class wich takes (message, statusCode) as parameters.
 const ErrorResponse = require('../utils/errorResponse');
 
+exports.getAllFormations = async(req, res, next) => {
+  try {
+    const fetchedFormations = await Formation.find();
+    res.status(200).json({
+      success: true,
+      formations: fetchedFormations
+    });
+  } catch (error) {
+    next(error)
+  };
+};
+
 exports.getAllFormationsWithPopulate = async(req, res, next) => {
   await Formation.find()
     .populate({path: 'modules', model: Module, populate: {path: 'composants', model: Composant}})
