@@ -1,6 +1,5 @@
 DOCUMENTATION
-=============
-- 
+
 - [SERVER](#server)
   - [Auth API](#auth-api)
 - [CLIENT](#client)
