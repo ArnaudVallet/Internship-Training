@@ -177,10 +177,10 @@ exports.deleteFormation = async(req, res, next) => {
 };
 
 exports.setPublished = async(req, res, next) => {
-  const _id = await req.body._id;
+  const _id = await req.params.id;
   try {
     //const myUpdate = await Formation.findOneAndUpdate({_id}, {published: !this.published});
-    const form = await Formation.findOne({ _id });
+    const form = await Formation.findById(_id);
     await form.updateOne({published: !form.published}, {new: true});
     // As updateOne does not return the updated document...
     form.published = !form.published; // ... this is for response visibility
