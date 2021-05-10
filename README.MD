@@ -5,34 +5,19 @@
 # SERVER
 
 ## Auth API
-| Route                                   | HTTP Verb | Description                       | Exemples |
-| :-------------------------------------- | :-------: | :-------------------------------- | :---: |
-| `/api/courses/sampleCourses`            |   `GET`   | Show random Courses               | [Voir](#)
-| `/api/courses/getAllCourses`            |   `GET`   | Show all Courses                  |```javascript require 'redcarpet'markdown = Redcarpet.new("Hello World!")puts markdown.to_html``` |
-| `/api/courses/getTeacherCourses/:id`    |   `GET`   | Show all Teacher Courses          |
-| `/api/courses/getOneCourse/:id`         |   `GET`   | Show one Course                   |
-| `/api/courses/newCourse`                |  `POST`   | Create new Course                 |
-| `/api/courses/editCourse/:id`           |   `PUT`   | Edit Course                       |
-| `/api/courses/deleteCourse/:id`         | `DELETE`  | Delete Course                     |
-| `/api/courses/deleteTeacherCourses/:id` | `DELETE`  | Delete Courses created by Teacher |
+| Route                      | HTTP Verb | Description                                                   |     Exemples      |
+| :------------------------- | :-------: | :------------------------------------------------------------ | :---------------: |
+| `/api/auth//register`      |  `POST`   | S'enregistrer et récupérer un token JWT                       | [Voir le code](#) |
+| `/api/auth/login`          |  `POST`   | Se connecter et récupérer un token JWT                        | [Voir le code](#) |
+| `/api/auth/forgotpassword` |  `POST`   | Obtenir un lien de réinitialisation de mot de passe par email | [Voir le code](#) |
+| `/api/auth/resetpassword`  |  `POST`   | Changer le mot de passe de en BDD                             | [Voir le code](#) |
 
 
 # CLIENT
 
-|   Route   |   Description   |
-| :--- | :--- |
-| `/` | Home Page |
-| `/courses` | Show All Courses |
-| `/courses/:course_id` | Show One Course |
-| `/teachers` | Show All Teachers |
-| `/teachers/:teacher_id` | Show Teacher Details |
-| `/signup` | Show Signup Form |
-| `/profile` | Show User Profile |
-| `/profile/edit-user` | Show Edit Form |
-| `/profile/create-teacher` | Show Create Teacher Profile Form |
-| `/profile-teacher/edit-teacher` | Show Edit Teacher Form |
-| `/profile-teacher/create-course` | Show Create Course Form |
-| `/profile-teacher/edit-course/:course_id` | Show Edit Course Form |
+| Route | Description |
+| :---- | :---------- |
+| `/`   | Home Page   |
 
 
 ```javascript
