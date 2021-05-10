@@ -7,17 +7,17 @@
 
 
 ## Auth API
-| Route                      | HTTP Verb | Description                                                   |        Exemples        |
-| :------------------------- | :-------: | :------------------------------------------------------------ | :--------------------: |
-| `/api/auth//register`      |  `POST`   | S'enregistrer et récupérer un token JWT                       | [:mag:](./routes) |
+| Route                      | HTTP Verb | Description                                                   |     Exemples      |
+| :------------------------- | :-------: | :------------------------------------------------------------ | :---------------: |
+| `/api/auth/register`       |  `POST`   | S'enregistrer et récupérer un token JWT                       | [:mag:](./routes) |
 | `/api/auth/login`          |  `POST`   | Se connecter et récupérer un token JWT                        | [:mag:](./routes) |
 | `/api/auth/forgotpassword` |  `POST`   | Obtenir un lien de réinitialisation de mot de passe par email | [:mag:](./routes) |
 | `/api/auth/resetpassword`  |  `POST`   | Changer le mot de passe de en BDD                             | [:mag:](./routes) |
 
 ## Formations API
 
-| Route                                                   | HTTP Verb | Description                                                                                                                                         |        Exemples        |
-| :------------------------------------------------------ | :-------: | :-------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------: |
+| Route                                                   | HTTP Verb | Description                                                                                                                                         |     Exemples      |
+| :------------------------------------------------------ | :-------: | :-------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------: |
 | `/api/formations/uploadimage`                           |  `POST`   | Upload une image dans le dossier `/images/formation`                                                                                                | [:mag:](./routes) |
 | `/api/formations/create`                                |  `POST`   | Enregistre l'image de la formation puis la crée sans [modules](#modules-api)                                                                        | [:mag:](./routes) |
 | `/api/formations/createwithbigobject`                   |  `POST`   | Enregistre l'image de la formation puis la crée intégralement la formation en insérant ses [modules](#modules-api) et [composants](#composants-api) | [:mag:](./routes) |
@@ -32,8 +32,8 @@
 
 ## Modules API
 
-| Route                                                   | HTTP Verb | Description                                                                     |        Exemples        |
-| :------------------------------------------------------ | :-------: | :------------------------------------------------------------------------------ | :--------------------: |
+| Route                                                   | HTTP Verb | Description                                                                     |     Exemples      |
+| :------------------------------------------------------ | :-------: | :------------------------------------------------------------------------------ | :---------------: |
 | `/api/modules/create`                                   |  `POST`   | Crée un module                                                                  | [:mag:](./routes) |
 | `/api/modules/createforformation/:id`                   |  `POST`   | Crée un module pour une [formation](#formations-api) spécifique                 | [:mag:](./routes) |
 | `/api/modules/`                                         |   `GET`   | Récupère tous les modules non populés                                           | [:mag:](./routes) |
@@ -43,8 +43,8 @@
 
 ## Composants API
 
-| Route                                 | HTTP Verb | Description                                                 |        Exemples        |
-| :------------------------------------ | :-------: | :---------------------------------------------------------- | :--------------------: |
+| Route                                 | HTTP Verb | Description                                                 |     Exemples      |
+| :------------------------------------ | :-------: | :---------------------------------------------------------- | :---------------: |
 | `/api/composants/create`              |  `POST`   | Crée un composant                                           | [:mag:](./routes) |
 | `/api/composants/createformodule/:id` |  `POST`   | Crée un composant pour un [module](#modules-api) spécifique | [:mag:](./routes) |
 | `/api/composants/`                    |   `GET`   | Récupère tous les composants                                | [:mag:](./routes) |
