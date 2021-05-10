@@ -4,8 +4,4 @@
 
 ### `/api/auth/register`
 
-{
-  "email": "arnaudvallet.pro@gmail.com",
-  "password": "azertyuiop",
-  "username": "Arnaud"
-}
+> { email, password, username }
