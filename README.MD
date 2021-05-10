@@ -9,7 +9,7 @@ DOCUMENTATION
 ## Auth API
 | Route                      | HTTP Verb | Description                                                   |     Exemples      |
 | :------------------------- | :-------: | :------------------------------------------------------------ | :---------------: |
-| `/api/auth//register`      |  `POST`   | S'enregistrer et récupérer un token JWT                       | [:mag:](#) |
+| `/api/auth//register`      |  `POST`   | S'enregistrer et récupérer un token JWT                       | [:mag:](#oui) |
 | `/api/auth/login`          |  `POST`   | Se connecter et récupérer un token JWT                        | [:mag:](#) |
 | `/api/auth/forgotpassword` |  `POST`   | Obtenir un lien de réinitialisation de mot de passe par email | [:mag:](#) |
 | `/api/auth/resetpassword`  |  `POST`   | Changer le mot de passe de en BDD                             | [:mag:](#) |
