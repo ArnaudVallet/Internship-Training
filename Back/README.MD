@@ -5,7 +5,6 @@ DOCUMENTATION
   - [Formations API](#formations-api)
   - [Modules API](#modules-api)
   - [Composants API](#composants-api)
-      - [CREATE - composants](#create---composants)
 
 # SERVER API DOC
 
@@ -46,7 +45,6 @@ DOCUMENTATION
 
 ## Composants API
 
-#### CREATE - composants
 | Route                                 | HTTP Verb | Description                                                 |        Exemples        |
 | :------------------------------------ | :-------: | :---------------------------------------------------------- | :--------------------: |
 | `/api/composants/create`              |  `POST`   | Crée un composant                                           | [:mag:](./routes) |
