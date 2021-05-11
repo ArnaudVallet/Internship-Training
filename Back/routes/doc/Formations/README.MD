@@ -79,6 +79,8 @@ const create = async(token, data) => {
   }
 }
 ```
+<hr />
+<br />
 
 ### `/api/formations/createwithbigobject`
 :arrow_forward: *body*
