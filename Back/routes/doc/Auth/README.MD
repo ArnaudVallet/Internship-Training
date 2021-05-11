@@ -4,6 +4,9 @@ Exemples d'utilisation des routes d'authentification
 - [`/api/auth/forgotpassword`](#apiauthforgotpassword)
 - [`/api/auth/resetpassword`](#apiauthresetpassword)
 
+<hr />
+<br />
+
 ### `/api/auth/register`
 :arrow_forward: *body*
 ```javascript
@@ -12,8 +15,8 @@ const data = { email: String, password: String, username: String }
 :ballot_box_with_check: *req*
 ```javascript
 const register = async(data) => {
-  const res = await axios.post('http://localhost:3000/api/auth/register', { data })
-}
+  const res = await axios.post('http://localhost:3000/api/auth/register', data );
+};
 ```
 :white_check_mark: *res*
 ```javascript
@@ -35,9 +38,10 @@ const data = { email: String, password: String }
 ```
 :ballot_box_with_check: *req*
 ```javascript
-axios.post('http://localhost:3000/api/auth/login', {
-  data
-})
+const login = async(data) => {
+  const res = await axios.post('http://localhost:3000/api/auth/login', data );
+};
+
 ```
 :white_check_mark: *res*
 ```javascript
@@ -49,6 +53,8 @@ axios.post('http://localhost:3000/api/auth/login', {
   isAdmin: false
 }
 ```
+<hr />
+<br />
 
 ### `/api/auth/forgotpassword`
 :arrow_forward: *body*
@@ -57,9 +63,9 @@ const data = { email: String }
 ```
 :ballot_box_with_check: *req*
 ```javascript
-axios.post('http://localhost:3000/api/auth/forgotpassword', {
-  data
-})
+const forgotpassword = async(data) => {
+  const res = await axios.post('http://localhost:3000/api/auth/forgotpassword', data );
+};
 ```
 :white_check_mark: *res*
 ```javascript
@@ -68,15 +74,19 @@ axios.post('http://localhost:3000/api/auth/forgotpassword', {
   data: "Email envoyé"
 }
 ```
+<hr />
+<br />
 
 ### `/api/auth/resetpassword`
-:arrow_forward: *body*
+:arrow_forward: `*body*`
 ```javascript
-const data = { email: String }
+const data = { password: String }
 ```
 :ballot_box_with_check: *req*
 ```javascript
-axios.put('http://localhost:3000/api/auth/resetpassword/:resetToken')
+const reserpassword = async() => {
+  const res = await axios.put('http://localhost:3000/api/auth/resetpassword/:resetToken', data);
+};
 ```
 :white_check_mark: *res*
 ```javascript
