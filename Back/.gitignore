@@ -25,5 +25,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-/uploads/admin
-/uploads/images/formations
+uploads/admin
+uploads/images/formations
