@@ -25,6 +25,7 @@ const register = async(data) => {
   isAdmin: false
 }
 ```
+<br />
 
 ### `/api/auth/login`
 :arrow_forward: *body*
