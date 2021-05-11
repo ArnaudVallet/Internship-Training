@@ -3,6 +3,7 @@
 - [`/api/formations/create`](#apiformationscreate)
 - [`/api/formations/createwithbigobject`](#apiformationscreatewithbigobject)
 - [`/api/formations/`](#apiformations)
+- [`/api/formations/withpopulate`](#apiformationswithpopulate)
 
 <hr />
 <br />
@@ -150,13 +151,13 @@ const createwithbigobject = async(token, data) => {
 
 :ballot_box_with_check: *req*
 ```javascript
-const getAllFormations = async(token, data) => {
+const getAllFormations = async(token) => {
   const config = {
     headers: {
       'Authorization': 'Bearer ' + token
     }
   }
-  const res = await axios.post('http://localhost:3000/api/formations/', data, config );
+  const res = await axios.get('http://localhost:3000/api/formations/', config );
 };
 ```
 :white_check_mark: *res*
@@ -179,6 +180,66 @@ const getAllFormations = async(token, data) => {
       description: String,
       niveau: String,
       __v: 1,
+      createdAt: Date,
+      updatedAt: Date
+    },
+    // ...autres formations
+  ]
+}
+```
+<hr />
+<br />
+
+### `/api/formations/withpopulate`
+
+:ballot_box_with_check: *req*
+```javascript
+const getAllFormations = async(token) => {
+  const config = {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  }
+  const res = await axios.get('http://localhost:3000/api/formations/withpopulate', config );
+};
+```
+:white_check_mark: *res*
+```javascript
+{
+  success: true,
+  formations: [
+    {
+      image: {
+        path: String,
+        filename: String
+      },
+      modules: [
+        {
+          composants: [
+            {
+              _id: String,
+              type: String,
+              video: {
+                _id: String,
+                url: String,
+                titre: String
+              },
+              __v: 0
+            },
+            // ...autres composants
+          ],
+          _id: String,
+          titre: String,
+          __v: 0
+        },
+        // ...autres modules
+      ],
+      published: false,
+      _id: String,
+      titre: String,
+      description: String,
+      niveau: String,
+      __v: 0,
       createdAt: Date,
       updatedAt: Date
     },
