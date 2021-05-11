@@ -12,9 +12,10 @@ const data = { email: String, password: String, username: String }
 ```
 :arrow_forward: Code
 ```javascript
-axios.post('http://localhost:3000/api/auth/register', {
-  data
-})
+const login = async(data) => {
+  const res = await axios.post('http://localhost:3000/api/auth/register', { data })
+}
+
 ```
 :white_check_mark: res
 ```javascript
@@ -69,15 +70,15 @@ axios.post('http://localhost:3000/api/auth/forgotpassword', {
 ```
 
 ### `/api/auth/resetpassword`
-:one: req
+:ballot_box_with_check: req
 ```javascript
 const data = { email: String }
 ```
-:two: Code
+:arrow_forward: Code
 ```javascript
 axios.put('http://localhost:3000/api/auth/resetpassword/:resetToken')
 ```
-:three: res
+:white_check_mark: res
 ```javascript
 {
   success: true,
