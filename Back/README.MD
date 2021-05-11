@@ -32,14 +32,14 @@
 
 ## Modules API
 
-| Route                                                   | HTTP Verb | Description                                                                     |     Exemples      |
-| :------------------------------------------------------ | :-------: | :------------------------------------------------------------------------------ | :---------------: |
-| `/api/modules/create`                                   |  `POST`   | Crée un module                                                                  | [:mag:](./routes) |
-| `/api/modules/createforformation/:id`                   |  `POST`   | Crée un module pour une [formation](#formations-api) spécifique                 | [:mag:](./routes) |
-| `/api/modules/`                                         |   `GET`   | Récupère tous les modules non populés                                           | [:mag:](./routes) |
-| `/api/modules/getonebyid/:id`                           |   `GET`   | Récupère un module non populée par son `id`                                     | [:mag:](./routes) |
-| `/api/modules/:module_id/addonecomposant/:composant_id` |  `PATCH`  | Ajoute un [composant](#composants-api) au module dans son tableau de composants | [:mag:](./routes) |
-| `pas encore implémenté`                                 | `DELETE`  | Supprime un module                                                              | [:mag:](./routes) |
+| Route                                                   | HTTP Verb | Description                                                                     |                                   Exemples                                    |
+| :------------------------------------------------------ | :-------: | :------------------------------------------------------------------------------ | :---------------------------------------------------------------------------: |
+| `/api/modules/create`                                   |  `POST`   | Crée un module                                                                  |                [:mag:](./routes/doc/Modules/#apimodulescreate)                |
+| `/api/modules/createforformation/:id`                   |  `POST`   | Crée un module pour une [formation](#formations-api) spécifique                 |         [:mag:](./routes/doc/Modules/#apimodulescreateforformationid)         |
+| `/api/modules/`                                         |   `GET`   | Récupère tous les modules non populés                                           |                   [:mag:](./routes/doc/Modules/#apimodules)                   |
+| `/api/modules/getonebyid/:id`                           |   `GET`   | Récupère un module non populée par son `id`                                     |             [:mag:](./routes/doc/Modules/#apimodulesgetonebyidid)             |
+| `/api/modules/:module_id/addonecomposant/:composant_id` |  `PATCH`  | Ajoute un [composant](#composants-api) au module dans son tableau de composants | [:mag:](./routes/doc/Modules/#apimodulesmodule_idaddonecomposantcomposant_id) |
+| `pas encore implémenté`                                 | `DELETE`  | Supprime un module                                                              |                               [:mag:](./routes)                               |
 
 ## Composants API
 
