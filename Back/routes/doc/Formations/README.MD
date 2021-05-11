@@ -36,11 +36,11 @@ const uploadImage = async(token, data) => {
 ### `/api/formations/create`
 :arrow_forward: *body*
 ```javascript
-const data = { file }
+const data = { file, data }
 ```
 :ballot_box_with_check: *req*
 ```javascript
-const uploadImage = async(token, data) => {
+const create = async(token, data) => {
   const config = {
     headers: {
       'Authorization': 'Bearer ' + token
