@@ -2,7 +2,7 @@ Exemples d'utilisation des routes d'authentification
 - [`/api/auth/register`](#apiauthregister)
 - [`/api/auth/login`](#apiauthlogin)
 - [`/api/auth/forgotpassword`](#apiauthforgotpassword)
-- [`/api/auth/resetpassword`](#apiauthresetpassword)
+- [`/api/auth/resetpassword/:resetToken`](#apiauthresetpasswordresettoken)
 
 <hr />
 <br />
@@ -77,7 +77,7 @@ const forgotpassword = async(data) => {
 <hr />
 <br />
 
-### `/api/auth/resetpassword`
+### `/api/auth/resetpassword/:resetToken`
 :arrow_forward: *body + params*
 ```javascript
 // body
