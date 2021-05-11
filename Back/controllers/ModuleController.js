@@ -7,7 +7,10 @@ const ErrorResponse = require('../utils/errorResponse');
 exports.getAllModules = async(req, res, next) => {
   try {
     const fetch = await Module.find();
-    res.status(200).json(fetch);
+    res.status(200).json({
+      success: true,
+      modules: fetch
+    });
   } catch (error) {
     next(error) 
   }
@@ -20,9 +23,10 @@ exports.getOneById = async(req, res, next) => {
     if(!findModule){
       return next(new ErrorResponse("Aucun module trouvé.", 400))
     }
-    res.status(200).json(
-      findModule
-    )
+    res.status(200).json({
+      success: true,
+      module: findModule
+    });
   } catch (error) {
     next(error);
   };
@@ -32,7 +36,10 @@ exports.createModule = async(req, res, next) => {
   const data = await req.body
   const newModule = await new Module(data);
   const result = await newModule.save();
-  res.status(201).json(result);
+  res.status(201).json({
+    success: true,
+    module: result
+  });
 }
 
 exports.createFormationModule = async(req, res, next) => {
@@ -50,7 +57,10 @@ exports.createFormationModule = async(req, res, next) => {
     const newModule = await new Module(data).save();
     // Insertion de son Id dans la liste des modules de la Formation trouvée
     await targetFormation.addModule(newModule._id);
-    res.send(targetFormation)
+    res.status(201).json({
+      success: true,
+      formation: targetFormation
+    });
   } catch (error) {
     next(error)
   }
@@ -73,7 +83,10 @@ exports.addOneExistingComposant = async(req, res, next) => {
     // Add composant to module
     await checkModule.addComposant(composant_id);
     // Renvoie de la réponse contenant le module modifié
-    res.send(checkModule);
+    res.status(200).json({
+      success: true,
+      module: checkModule
+    });
   } catch (error) {
     next(error);
   }
