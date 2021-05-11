@@ -1,4 +1,4 @@
-# Exemples d'utilisation des routes d'authentification <!-- omit in toc --> 
+# Exemples d'utilisation des routes de formations <!-- omit in toc --> 
 - [`/api/formations/uploadimage`](#apiformationsuploadimage)
 - [`/api/formations/create`](#apiformationscreate)
 - [`/api/formations/createwithbigobject`](#apiformationscreatewithbigobject)
