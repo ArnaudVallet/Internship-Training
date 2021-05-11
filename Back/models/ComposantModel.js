@@ -14,7 +14,7 @@ const composantSchema = new mongoose.Schema({
     required: [true, 'Votre composant doit avoir un type']
   },
   quiz: quizSchema,
-  video: videoSchema,
+  vidéo: videoSchema,
   article: articleSchema
   
 });

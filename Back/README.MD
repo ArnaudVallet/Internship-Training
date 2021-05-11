@@ -43,12 +43,12 @@
 
 ## Composants API
 
-| Route                                 | HTTP Verb | Description                                                 |     Exemples      |
-| :------------------------------------ | :-------: | :---------------------------------------------------------- | :---------------: |
-| `/api/composants/create`              |  `POST`   | Crée un composant                                           | [:mag:](./routes) |
-| `/api/composants/createformodule/:id` |  `POST`   | Crée un composant pour un [module](#modules-api) spécifique | [:mag:](./routes) |
-| `/api/composants/`                    |   `GET`   | Récupère tous les composants                                | [:mag:](./routes) |
-| `pas encore implémenté`               |  `PATCH`  | Met à jour un composant                                     | [:mag:](./routes) |
-| `pas encore implémenté`               | `DELETE`  | Supprime un composant                                       | [:mag:](./routes) |
+| Route                                 | HTTP Verb | Description                                                 |                       Exemples                        |
+| :------------------------------------ | :-------: | :---------------------------------------------------------- | :---------------------------------------------------: |
+| `/api/composants/create`              |  `POST`   | Crée un composant                                           | [:mag:](./routes/doc/Composants/#apicomposantscreate) |
+| `/api/composants/createformodule/:id` |  `POST`   | Crée un composant pour un [module](#modules-api) spécifique |                   [:mag:](./routes)                   |
+| `/api/composants/`                    |   `GET`   | Récupère tous les composants                                |                   [:mag:](./routes)                   |
+| `pas encore implémenté`               |  `PATCH`  | Met à jour un composant                                     |                   [:mag:](./routes)                   |
+| `pas encore implémenté`               | `DELETE`  | Supprime un composant                                       |                   [:mag:](./routes)                   |
 
 

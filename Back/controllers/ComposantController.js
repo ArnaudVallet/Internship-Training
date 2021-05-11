@@ -20,7 +20,10 @@ exports.createComposant = async(req, res, next) => {
   const data = await req.body
   const newComposant = await new Composant(data);
   const result = await newComposant.save();
-  res.json(result);
+  res.status(201).json({
+    success: true,
+    composant: result
+  });
 }
 
 exports.createModuleComposant = async(req, res, next) => {

@@ -7,21 +7,21 @@ const questionSchema = new mongoose.Schema({
   nbBonnesRéponses: {
     type: Number
   },
-  reponse1: {
-    Nom: String,
-    bonneRéponse: Boolean
+  réponse1: {
+    text: String,
+    correct: Boolean
   },
-  reponse2: {
-    Nom: String,
-    bonneRéponse: Boolean
+  réponse2: {
+    text: String,
+    correct: Boolean
   },
-  reponse3: {
-    Nom: String,
-    bonneRéponse: Boolean
+  réponse3: {
+    text: String,
+    correct: Boolean
   },
-  reponse4: {
-    Nom: String,
-    bonneRéponse: Boolean
+  réponse4: {
+    text: String,
+    correct: Boolean
   }
 });
 
