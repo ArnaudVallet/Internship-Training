@@ -1,4 +1,4 @@
-Exemples d'utilisation des routes d'authentification
+# Exemples d'utilisation des routes d'authentification <!-- omit in toc -->
 - [`/api/auth/register`](#apiauthregister)
 - [`/api/auth/login`](#apiauthlogin)
 - [`/api/auth/forgotpassword`](#apiauthforgotpassword)
