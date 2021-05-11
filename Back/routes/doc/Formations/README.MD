@@ -54,8 +54,21 @@ const uploadImage = async(token, data) => {
 ```javascript
 {
   success: true,
-  filename: file.filename,
-  url: file.path
+  formation: {
+      image: {
+          path: String,
+          filename: String
+      },
+      modules: [],
+      published: false,
+      _id: String,
+      titre: String,
+      description: String,
+      niveau: String,
+      createdAt: Date,
+      updatedAt: Date,
+      __v: 0
+  }
 }
 ```
 
