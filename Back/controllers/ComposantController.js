@@ -13,7 +13,10 @@ exports.testAggregation = async(req, res, next) => {
 
 exports.getAllComposants = async(req, res, next) => {
   const fetch = await Composant.find();
-  res.json(fetch);
+  res.status(200).json({
+    success: true,
+    composants: fetch
+  });
 }
 
 exports.createComposant = async(req, res, next) => {
@@ -42,7 +45,7 @@ exports.createModuleComposant = async(req, res, next) => {
     await targetModule.addComposant(newComposant._id);
     res.status(200).json({
       success: true,
-      targetModule
+      module: targetModule
     });
   } catch (error) {
     next(error)
