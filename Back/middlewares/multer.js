@@ -10,7 +10,17 @@ const dateConvert = require('../utils/dateConvert');
 const FormationImageStorage = multer.diskStorage({
   // Destination to store image
   destination: function(req, file, cb) {
-    cb(null, './uploads/images/formations');
+    //define the dir to save
+    const dir = `./uploads/images/formations`;
+    // check if it exists
+    if(!fs.existsSync(dir)) {
+      fs.mkdir(dir, function(err) {
+        if (err) {
+          return cb(err)
+        }
+      });
+    }
+    cb(null, dir);
   },  
   filename: (req, file, cb) => {
     console.log('FILE CONTIENT : ', file);
@@ -56,7 +66,7 @@ const AdminFileStorage = multer.diskStorage({
 const FormationImageUpload = multer({
   storage: FormationImageStorage,
   limits: {
-    fileSize: 1000000 // 1000000 Bytes = 1 MB
+    fileSize: 10000000 // 1000000 Bytes = 1 MB
   },
   fileFilter: (req, file, cb) => {
     if (!file.originalname.match(/\.(jpg|JPG|jpeg|JPEG|png|PNG)$/)) { 
