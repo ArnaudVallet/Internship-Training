@@ -76,3 +76,28 @@ UserSchema.methods.getResetPasswordToken = function(){
 const User = mongoose.model("User", UserSchema);
 
 module.exports = User;
+
+
+
+
+// progress: [
+//   {
+//     formationID: String,
+//     modules: [validationUserModules],
+//     validationUserModules: [
+//       {
+//         moduleID: String,
+//         unlocked: Boolean,
+//         done: Boolean
+//       }
+//     ],
+//     composants: [validationUserComposants],
+//     validationUserComposants: [
+//       {
+//         composantID: String,
+//         done: Boolean,
+//         score: String
+//       }
+//     ]
+//   }
+// ]
