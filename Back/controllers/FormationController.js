@@ -93,6 +93,7 @@ exports.getAllFormationsWithAggregate = async(req, res, next) => {
 exports.uploadImage = async(req, res, next) => {
   const file = req.file;
   res.status(200).json({
+    success: true,
     filename: file.filename,
     url: file.path
   })
