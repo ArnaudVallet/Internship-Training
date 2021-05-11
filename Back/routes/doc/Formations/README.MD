@@ -8,6 +8,8 @@
 - [`/api/formations/getonebyidwithpopulate/:id`](#apiformationsgetonebyidwithpopulateid)
 - [`/api/formations/publishedwithpopulate`](#apiformationspublishedwithpopulate)
 - [`/api/formations/:id/setpublished`](#apiformationsidsetpublished)
+- [`/api/formations/:formation_id/addonemodule/:module_id`](#apiformationsformation_idaddonemodulemodule_id)
+- [`/api/formations/delete/:id`](#apiformationsdeleteid)
 
 <hr />
 <br />
@@ -33,8 +35,8 @@ const uploadImage = async(token, data) => {
 ```javascript
 {
   success: true,
-  filename: file.filename,
-  url: file.path
+  filename: String,
+  url: String
 }
 ```
 <hr />
@@ -74,7 +76,7 @@ const create = async(token, data) => {
           filename: String
       },
       modules: [],
-      published: false,
+      published: Boolean,
       _id: String,
       titre: String,
       description: String,
@@ -97,7 +99,7 @@ const data = {
     titre: String,
     description: String,
     niveau: String,
-    published: true,
+    published: Boolean,
     modules: [
       {
         titre: String,
@@ -136,7 +138,7 @@ const createwithbigobject = async(token, data) => {
         String,
         // ...autres modules
       ],
-      published: true,
+      published: Boolean,
       _id: String,
       titre: String,
       description: String,
@@ -178,7 +180,7 @@ const getAllFormations = async(token) => {
         String,
         // ... autres modules
       ],
-      published: false,
+      published: Boolean,
       _id: String,
       titre: String,
       description: String,
@@ -238,7 +240,7 @@ const getAllFormationsWithPopulate = async(token) => {
         },
         // ...autres modules
       ],
-      published: false,
+      published: Boolean,
       _id: String,
       titre: String,
       description: String,
@@ -445,5 +447,59 @@ const setFormationPublish = async(token, id) => {
     updatedAt: Date,
     __v: 0
   }
+}
+```
+### `/api/formations/:formation_id/addonemodule/:module_id`
+
+:ballot_box_with_check: *req*
+```javascript
+const addExistingModuleToFormation = async(token, formation_id, module_id) => {
+  const config = {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  }
+  const res = await axios.patch(`http://localhost:3000/api/formations/${formation_id}/addonemodule/${module_id}`, config );
+};
+```
+:white_check_mark: *res*
+```javascript
+{
+  image: {
+    path: String,
+    filename: String
+  },
+  modules: [
+    String,
+    String
+  ],
+  published: Boolean,
+  _id: String,
+  titre: String,
+  description: String,
+  niveau: String,
+  __v: 0,
+  createdAt: Date,
+  updatedAt: Date
+}
+```
+### `/api/formations/delete/:id`
+
+:ballot_box_with_check: *req*
+```javascript
+const deleteOneFormation = async(token, id) => {
+  const config = {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  }
+  const res = await axios.delete(`http://localhost:3000/api/formations/delete/${id}`, config );
+};
+```
+:white_check_mark: *res*
+```javascript
+{
+  success: true,
+  deleted: String
 }
 ```
