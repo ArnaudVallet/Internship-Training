@@ -2,6 +2,7 @@
 - [`/api/formations/uploadimage`](#apiformationsuploadimage)
 - [`/api/formations/create`](#apiformationscreate)
 - [`/api/formations/createwithbigobject`](#apiformationscreatewithbigobject)
+- [`/api/formations/`](#apiformations)
 
 <hr />
 <br />
@@ -55,7 +56,7 @@ const create = async(token, data) => {
       'content-type': 'multipart/form-data'
     }
   }
-  const res = await axios.post('http://localhost:3000/api/formations/uploadimage', data, config );
+  const res = await axios.post('http://localhost:3000/api/formations/create', data, config );
 };
 ```
 :white_check_mark: *res*
@@ -114,7 +115,7 @@ const createwithbigobject = async(token, data) => {
       'content-type': 'multipart/form-data'
     }
   }
-  const res = await axios.post('http://localhost:3000/api/formations/uploadimage', data, config );
+  const res = await axios.post('http://localhost:3000/api/formations/createwithbigobject', data, config );
 };
 ```
 :white_check_mark: *res*
@@ -139,5 +140,49 @@ const createwithbigobject = async(token, data) => {
       updatedAt: Date,
       __v: 0
   }
+}
+```
+
+<hr />
+<br />
+
+### `/api/formations/`
+
+:ballot_box_with_check: *req*
+```javascript
+const getAllFormations = async(token, data) => {
+  const config = {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  }
+  const res = await axios.post('http://localhost:3000/api/formations/', data, config );
+};
+```
+:white_check_mark: *res*
+```javascript
+{
+  success: true,
+  formations: [
+    {
+      image: {
+          path: String,
+          filename: String
+      },
+      modules: [
+        String,
+        // ... autres modules
+      ],
+      published: false,
+      _id: String,
+      titre: String,
+      description: String,
+      niveau: String,
+      __v: 1,
+      createdAt: Date,
+      updatedAt: Date
+    },
+    // ...autres formations
+  ]
 }
 ```
