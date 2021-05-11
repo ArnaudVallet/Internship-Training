@@ -83,7 +83,25 @@ const create = async(token, data) => {
 ### `/api/formations/createwithbigobject`
 :arrow_forward: *body*
 ```javascript
-const data = { file, data }
+const data = { 
+  file, 
+  data: {
+    titre: String,
+    description: String,
+    niveau: String,
+    published: true,
+    modules: [
+      {
+        titre: String,
+        composants: [
+          { titre: String, type: String, quiz: Object, video: Object, article: Object },
+          // ...autres composants
+        ]
+      },
+      // ...autres modules
+    ]
+  }
+}
 ```
 :ballot_box_with_check: *req*
 ```javascript
@@ -106,8 +124,11 @@ const createwithbigobject = async(token, data) => {
           path: String,
           filename: String
       },
-      modules: [],
-      published: false,
+      modules: [
+        String,
+        // ...autres modules
+      ],
+      published: true,
       _id: String,
       titre: String,
       description: String,

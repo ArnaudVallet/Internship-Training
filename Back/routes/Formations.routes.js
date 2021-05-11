@@ -28,7 +28,7 @@ const {
 // CREATE
 router.route('/uploadimage').post(FormationImageUpload.single('file'), uploadImage);
 router.route('/create').post(FormationImageUpload.single('file'), create);
-router.route('/createwithbigobject').post(createWithBigObject);
+router.route('/createwithbigobject').post(FormationImageUpload.single('file'), createWithBigObject);
 
 // READ
 router.route('/').get(getAllFormations);

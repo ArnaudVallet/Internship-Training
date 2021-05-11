@@ -136,8 +136,10 @@ exports.create = async(req, res, next) => {
 exports.createWithBigObject = async(req, res, next) => {
   
   try {
+    const file = req.file;
+    const formation = JSON.parse(req.body.data);
     // Get the body
-    const formation = req.body;
+            //const formation = req.body;
     // Define modules[] where we'll store each modules with modules.composants[...ids]
     const modules = []
     // Loop modules, save their composants[] and map the result to get an composants = [...ids]
@@ -154,9 +156,19 @@ exports.createWithBigObject = async(req, res, next) => {
     let modulesIds = insertModules.map( mod => mod._id);
     // Change formation.modules to our modules[...ids]
     formation.modules = modulesIds;
+    // Change backslashes from path to forwardslashes
+    file.path = file.path.replace(/\\/g, "/");
+    // Add image to the formation
+    formation.image = {
+      path: file.path,
+      filename: file.filename
+    };
     // Create the formation object and save it
     const newFormation = await new Formation(formation).save();
-    res.send(newFormation);
+    res.status(201).json({
+      success: true,
+      formation: newFormation
+    });
   } catch (error) {
     next(error);
   }
