@@ -11,13 +11,13 @@ exports.uploadOneFile = async(req, res, next) => {
 
 exports.uploadManyFiles = async(req, res, next) => {
   const files = req.files;
-  console.log(files);
+  const formatedFiles = files.map(file => { return {filename: file.filename, path: file.path = file.path.replace(/\\/g, "/")}})
+  console.log(formatedFiles);
   // file.path = file.path.replace(/\\/g, "/");
   res.status(200).json({
     success: true,
     message: `Les fichier ont bien été téléchargés.`,
-    // filename: file.filename,
-    // url: file.path
+    files: formatedFiles
   });
 };
 
