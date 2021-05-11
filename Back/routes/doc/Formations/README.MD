@@ -4,6 +4,10 @@
 - [`/api/formations/createwithbigobject`](#apiformationscreatewithbigobject)
 - [`/api/formations/`](#apiformations)
 - [`/api/formations/withpopulate`](#apiformationswithpopulate)
+- [`/api/formations/getonebyid/:id`](#apiformationsgetonebyidid)
+- [`/api/formations/getonebyidwithpopulate/:id`](#apiformationsgetonebyidwithpopulateid)
+- [`/api/formations/publishedwithpopulate`](#apiformationspublishedwithpopulate)
+- [`/api/formations/:id/setpublished`](#apiformationsidsetpublished)
 
 <hr />
 <br />
@@ -194,7 +198,7 @@ const getAllFormations = async(token) => {
 
 :ballot_box_with_check: *req*
 ```javascript
-const getAllFormations = async(token) => {
+const getAllFormationsWithPopulate = async(token) => {
   const config = {
     headers: {
       'Authorization': 'Bearer ' + token
@@ -245,5 +249,201 @@ const getAllFormations = async(token) => {
     },
     // ...autres formations
   ]
+}
+```
+<hr />
+<br />
+
+### `/api/formations/getonebyid/:id`
+
+:ballot_box_with_check: *req*
+```javascript
+const getOneFormationById = async(token, id) => {
+  const config = {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  }
+  const res = await axios.get(`http://localhost:3000/api/formations/getonebyid/${id}`, config );
+};
+```
+:white_check_mark: *res*
+```javascript
+{
+  success: true,
+  formation: {
+    image: {
+      path: String,
+      filename: String
+    },
+    modules: [
+      String,
+      // ...autres modules
+    ],
+    published: Boolean,
+    _id: String,
+    titre: String,
+    description: String,
+    niveau: String,
+    __v: 0,
+    createdAt: Date,
+    updatedAt: Date
+  }
+}
+```
+<hr />
+<br />
+
+### `/api/formations/getonebyidwithpopulate/:id`
+
+:ballot_box_with_check: *req*
+```javascript
+const getOneFormationByIdWithPopulate = async(token, id) => {
+  const config = {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  }
+  const res = await axios.get(`http://localhost:3000/api/formations/getonebyidwithpopulate/${id}`, config );
+};
+```
+:white_check_mark: *res*
+```javascript
+{
+  success: true,
+  formation: {
+    image: {
+      path: String,
+      filename: String
+    },
+    modules: [
+      {
+        composants: [
+          {
+            _id: String,
+            type: String,
+            video: {
+              _id: String,
+              url: String,
+              titre: String
+            },
+            __v: 0
+          },
+          // ...autres composants
+        ],
+        _id: String,
+        titre: String,
+        __v: 0
+      },
+      // ...autres modules
+    ],
+    published: Boolean,
+    _id: String,
+    titre: String,
+    description: String,
+    niveau: String,
+    __v: 0,
+    createdAt: Date,
+    updatedAt: Date
+  }
+}
+```
+<hr />
+<br />
+
+### `/api/formations/publishedwithpopulate`
+
+:ballot_box_with_check: *req*
+```javascript
+const getPublishedWithPopulate = async(token) => {
+  const config = {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  }
+  const res = await axios.get(`http://localhost:3000/api/formations/publishedwithpopulate`, config );
+};
+```
+:white_check_mark: *res*
+```javascript
+{
+  success: true,
+  formations: [
+    {
+      image: {
+        path: String,
+        filename: String
+      },
+      modules: [
+        {
+          composants: [
+            {
+              _id: String,
+              type: String,
+              video: {
+                _id: String,
+                url: String,
+                titre: String
+              }
+              __v: 0
+            },
+            // ...autres composants
+          ],
+          _id: String,
+          titre: String,
+          __v: 0
+        },
+        // ...autres modules
+      ],
+      published: Boolean,
+      _id: String,
+      titre: String,
+      description: String,
+      niveau: String,
+      __v: 0
+    },
+    // ...autres formations
+  ]
+}
+```
+<hr />
+<br />
+
+### `/api/formations/:id/setpublished`
+
+:ballot_box_with_check: *req*
+```javascript
+const setFormationPublish = async(token, id) => {
+  const config = {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  }
+  const res = await axios.patch(`http://localhost:3000/api/formations/${id}/setpublished`, config );
+};
+```
+:white_check_mark: *res*
+```javascript
+{
+  success: true,
+  message: "Formation correctement mise à jour",
+  formation: {
+    image: {
+      path: String,
+      filename: String
+    },
+    modules: [
+      String,
+      // ...autres modules
+    ],
+    published: Boolean,
+    _id: String,
+    titre: String,
+    description: String,
+    niveau: String,
+    createdAt: Date,
+    updatedAt: Date,
+    __v: 0
+  }
 }
 ```

@@ -46,7 +46,8 @@ exports.getOneById = async(req, res, next) => {
       return next(new ErrorResponse("Aucune formation trouvée.", 400))
     }
     res.status(200).json({
-      findFormation
+      success: true,
+      formation: findFormation
     })
   } catch (error) {
     next(error);
@@ -200,7 +201,7 @@ exports.setPublished = async(req, res, next) => {
     res.status(200).json({
       success: true,
       message: 'Formation correctement mise à jour.',
-      form
+      formation: form
     });
   } catch (error) {
     next(error)
