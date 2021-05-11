@@ -78,9 +78,12 @@ const forgotpassword = async(data) => {
 <br />
 
 ### `/api/auth/resetpassword`
-:arrow_forward: `*body*`
+:arrow_forward: *body + params*
 ```javascript
+// body
 const data = { password: String }
+
+// :resetToken est envoyé via le mail que reçoit l'utilisateur pour réinitialiser son mot de passe
 ```
 :ballot_box_with_check: *req*
 ```javascript
