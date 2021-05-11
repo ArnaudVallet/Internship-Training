@@ -25,6 +25,7 @@ const register = async(data) => {
   isAdmin: false
 }
 ```
+<hr />
 <br />
 
 ### `/api/auth/login`
