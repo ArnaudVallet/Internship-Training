@@ -1,9 +1,8 @@
-# SERVER API DOC
-- [SERVER API DOC](#server-api-doc)
-  - [Auth API](#auth-api)
-  - [Formations API](#formations-api)
-  - [Modules API](#modules-api)
-  - [Composants API](#composants-api)
+# SERVER API DOC <!-- omit in toc -->
+- [Auth API](#auth-api)
+- [Formations API](#formations-api)
+- [Modules API](#modules-api)
+- [Composants API](#composants-api)
 
 
 ## Auth API
