@@ -7,12 +7,12 @@
 
 
 ## Auth API
-| Route                                 | HTTP Verb | Description                                                   |     Exemples      |
-| :------------------------------------ | :-------: | :------------------------------------------------------------ | :---------------: |
-| `/api/auth/register`                  |  `POST`   | S'enregistrer et récupérer un token JWT                       | [:mag:](./routes) |
-| `/api/auth/login`                     |  `POST`   | Se connecter et récupérer un token JWT                        | [:mag:](./routes) |
-| `/api/auth/forgotpassword`            |  `POST`   | Obtenir un lien de réinitialisation de mot de passe par email | [:mag:](./routes) |
-| `/api/auth/resetpassword/:resetToken` |  `PUT`   | Changer le mot de passe de en BDD                             | [:mag:](./routes) |
+| Route                                 | HTTP Verb | Description                                                   |                  Exemples                   |
+| :------------------------------------ | :-------: | :------------------------------------------------------------ | :-----------------------------------------: |
+| `/api/auth/register`                  |  `POST`   | S'enregistrer et récupérer un token JWT                       | [:mag:](./routes/doc/Auth/#apiauthregister) |
+| `/api/auth/login`                     |  `POST`   | Se connecter et récupérer un token JWT                        |              [:mag:](./routes)              |
+| `/api/auth/forgotpassword`            |  `POST`   | Obtenir un lien de réinitialisation de mot de passe par email |              [:mag:](./routes)              |
+| `/api/auth/resetpassword/:resetToken` |   `PUT`   | Changer le mot de passe de en BDD                             |              [:mag:](./routes)              |
 
 ## Formations API
 
