@@ -7,7 +7,7 @@
 ```javascript
 const data = { email: String, password: String, username: String }
 ```
-> Code
+:ballot_box_with_check: Code
 ```javascript
 axios.post('http://localhost:3000/api/auth/register', {
   data
