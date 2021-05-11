@@ -3,11 +3,11 @@
     - [`/api/auth/login`](#apiauthlogin)
 
 ### `/api/auth/login`
-:: req.body
+:ballot_box_with_check: req
 ```javascript
 const data = { email: String, password: String, username: String }
 ```
-:ballot_box_with_check: Code
+:arrow_forward: Code
 ```javascript
 axios.post('http://localhost:3000/api/auth/register', {
   data
