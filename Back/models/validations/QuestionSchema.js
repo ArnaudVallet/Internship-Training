@@ -4,8 +4,16 @@ const questionSchema = new mongoose.Schema({
   question: {
     type: String
   },
-  nbBonnesRéponses: {
-    type: Number
+  nbCorrect: {
+    type: Number,
+    default: function() {
+      let count = 0;
+      this.réponse1.correct ? count++ : undefined;
+      this.réponse2.correct ? count++ : undefined;
+      this.réponse3.correct ? count++ : undefined;
+      this.réponse4.correct ? count++ : undefined;
+      return count;
+    }
   },
   réponse1: {
     text: String,
@@ -24,5 +32,14 @@ const questionSchema = new mongoose.Schema({
     correct: Boolean
   }
 });
+
+// questionSchema.virtual('nbCorrect').get(function() {
+//   let count = 0;
+//   this.réponse1.correct ? count++ : undefined;
+//   this.réponse2.correct ? count++ : undefined;
+//   this.réponse3.correct ? count++ : undefined;
+//   this.réponse4.correct ? count++ : undefined;
+//   return count;
+// });
 
 module.exports = questionSchema
